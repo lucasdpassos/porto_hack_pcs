@@ -333,12 +333,14 @@
         "timeout": "",
         "optout-learning": false,
         "persist-session-id": false,
-        "x": 690,
+        "x": 810,
         "y": 500,
         "wires": [
             [
                 "2630e99e9baaa10a",
-                "a10add62324fb078"
+                "a10add62324fb078",
+                "34ff2991d2f31bfd",
+                "c13e18956ed6ace1"
             ]
         ]
     },
@@ -355,9 +357,9 @@
         "voicehidden": "pt-BR_IsabelaV3Voice",
         "format": "audio/mp3",
         "password": "",
-        "apikey": "ddbUdn93eJtg1eJmcfhz9yBRMBnsXSq51YGz875z_p-j",
+        "apikey": "sU3nV9SIvaVoc7g5_46ezaM1KWIQ8cpxkT-faZJC4X4z",
         "payload-response": false,
-        "service-endpoint": "https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/b3c0b40c-145b-4ddb-aa68-12afa01c8c0f",
+        "service-endpoint": "https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/6f4ce5df-e071-48ce-b26b-513d5198279b",
         "x": 1560,
         "y": 500,
         "wires": [
@@ -507,12 +509,10 @@
         "checkall": "false",
         "repair": true,
         "outputs": 1,
-        "x": 850,
-        "y": 500,
+        "x": 930,
+        "y": 420,
         "wires": [
             [
-                "34ff2991d2f31bfd",
-                "c13e18956ed6ace1",
                 "b103335752b1e34b"
             ]
         ]
@@ -628,7 +628,8 @@
         "y": 460,
         "wires": [
             [
-                "4c3a98cda6cb1db7"
+                "4c3a98cda6cb1db7",
+                "a2834b271d0feab5"
             ]
         ]
     },
@@ -655,7 +656,8 @@
         "y": 540,
         "wires": [
             [
-                "4c3a98cda6cb1db7"
+                "4c3a98cda6cb1db7",
+                "a2834b271d0feab5"
             ]
         ]
     },
