@@ -40,6 +40,170 @@
         "verboselogging": false
     },
     {
+        "id": "31ddf043d13a4a7c",
+        "type": "websocket-listener",
+        "path": "/ws/dashboard-updates",
+        "wholemsg": "false"
+    },
+    {
+        "id": "2295068dbcb17ca7",
+        "type": "websocket out",
+        "z": "ce5ba32f5ac0a2dd",
+        "name": "",
+        "server": "31ddf043d13a4a7c",
+        "client": "",
+        "x": 580,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "42a28745.bd5d78",
+        "type": "http response",
+        "z": "ce5ba32f5ac0a2dd",
+        "name": "",
+        "x": 650,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "1787be40.e87842",
+        "type": "http in",
+        "z": "ce5ba32f5ac0a2dd",
+        "name": "",
+        "url": "/simple",
+        "method": "get",
+        "swaggerDoc": "",
+        "x": 261,
+        "y": 200,
+        "wires": [
+            [
+                "1857548e.e7a8ab"
+            ]
+        ]
+    },
+    {
+        "id": "1857548e.e7a8ab",
+        "type": "template",
+        "z": "ce5ba32f5ac0a2dd",
+        "name": "Simple Web Page",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE HTML>\n<html>\n    <head>\n    <title>Simple Live Display</title>\n    <script type=\"text/javascript\">\n        var ws;\n        var wsUri = \"ws:\";\n        var loc = window.location;\n        console.log(loc);\n        if (loc.protocol === \"https:\") { wsUri = \"wss:\"; }\n        // This needs to point to the web socket in the Node-RED flow\n        // ... in this case it's ws/simple\n        wsUri += \"//\" + loc.host + loc.pathname.replace(\"simple\",\"ws/dashboard-updates\");\n\n        function wsConnect() {\n            console.log(\"connect\",wsUri);\n            ws = new WebSocket(wsUri);\n            //var line = \"\";    // either uncomment this for a building list of messages\n            ws.onmessage = function(msg) {\n                var line = \"\";  // or uncomment this to overwrite the existing message\n                // parse the incoming message as a JSON object\n                var data = msg.data;\n                //console.log(data);\n                // build the output from the topic and payload parts of the object\n                line += \"<p>\"+data+\"</p>\";\n                // replace the messages div with the new \"line\"\n                document.getElementById('messages').innerHTML = line;\n                //ws.send(JSON.stringify({data:data}));\n            }\n            ws.onopen = function() {\n                // update the status div with the connection status\n                document.getElementById('status').innerHTML = \"connected\";\n                //ws.send(\"Open for data\");\n                console.log(\"connected\");\n            }\n            ws.onclose = function() {\n                // update the status div with the connection status\n                document.getElementById('status').innerHTML = \"not connected\";\n                // in case of lost connection tries to reconnect every 3 secs\n                setTimeout(wsConnect,3000);\n            }\n        }\n        \n        function doit(m) {\n            if (ws) { ws.send(m); }\n        }\n    </script>\n    </head>\n    <body onload=\"wsConnect();\" onunload=\"ws.disconnect();\">\n        <font face=\"Arial\">\n        <h1>Simple Live Display</h1>\n        <div id=\"messages\"></div>\n        <button type=\"button\" onclick='doit(\"click\");'>Click to send message</button>\n        <hr/>\n        <div id=\"status\">unknown</div>\n        </font>\n    </body>\n</html>\n",
+        "x": 450,
+        "y": 200,
+        "wires": [
+            [
+                "42a28745.bd5d78"
+            ]
+        ]
+    },
+    {
+        "id": "eccc8bc2.133378",
+        "type": "websocket in",
+        "z": "ce5ba32f5ac0a2dd",
+        "name": "",
+        "server": "31ddf043d13a4a7c",
+        "client": "",
+        "x": 400,
+        "y": 320,
+        "wires": [
+            [
+                "9adfff59.652",
+                "9adfff59.652"
+            ]
+        ]
+    },
+    {
+        "id": "9adfff59.652",
+        "type": "debug",
+        "z": "ce5ba32f5ac0a2dd",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 610,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "c537faa811e5d940",
+        "type": "link in",
+        "z": "ce5ba32f5ac0a2dd",
+        "name": "",
+        "links": [
+            "99ed44b27e01b79f",
+            "d86374c0a990128d"
+        ],
+        "x": 425,
+        "y": 260,
+        "wires": [
+            [
+                "2295068dbcb17ca7"
+            ]
+        ]
+    },
+    {
+        "id": "5f4bd88db982e52b",
+        "type": "inject",
+        "z": "ce5ba32f5ac0a2dd",
+        "d": true,
+        "name": "Tick every 5 secs",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "test",
+        "payload": "",
+        "payloadType": "date",
+        "x": 350,
+        "y": 380,
+        "wires": [
+            [
+                "3c2a746b87031285"
+            ]
+        ]
+    },
+    {
+        "id": "3c2a746b87031285",
+        "type": "function",
+        "z": "ce5ba32f5ac0a2dd",
+        "name": "format time nicely",
+        "func": "msg.payload = Date(msg.payload).toString();\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 380,
+        "wires": [
+            [
+                "99ed44b27e01b79f"
+            ]
+        ]
+    },
+    {
+        "id": "99ed44b27e01b79f",
+        "type": "link out",
+        "z": "ce5ba32f5ac0a2dd",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "c537faa811e5d940"
+        ],
+        "x": 685,
+        "y": 380,
+        "wires": []
+    },
+    {
         "id": "549fe63188cc5182",
         "type": "watson-speech-to-text",
         "z": "dc57c22878a26a01",
@@ -139,7 +303,9 @@
         "y": 500,
         "wires": [
             [
-                "a8a4ec391483f3bc"
+                "a8a4ec391483f3bc",
+                "0c207c8296aed0c6",
+                "9088051f37191c3a"
             ]
         ]
     },
@@ -274,11 +440,81 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 920,
-        "y": 500,
+        "x": 940,
+        "y": 380,
         "wires": [
             [
                 "4c3a98cda6cb1db7"
+            ]
+        ]
+    },
+    {
+        "id": "d86374c0a990128d",
+        "type": "link out",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "c537faa811e5d940"
+        ],
+        "x": 935,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "0c207c8296aed0c6",
+        "type": "debug",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 970,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "9088051f37191c3a",
+        "type": "change",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "event",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.eventType",
+                "pt": "msg",
+                "to": "event.output.intents.0.intent",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.data.ship",
+                "pt": "msg",
+                "to": "event.output.entities.0.value",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 980,
+        "y": 600,
+        "wires": [
+            [
+                "d86374c0a990128d"
             ]
         ]
     }
