@@ -1,24 +1,19 @@
 <p align="center">
-    <img src="./docs/node-red-icon.svg" alt="Node-RED logo" width="200"/>
+    <img src="./docs/icon.svg" alt="Connect Porto" width="200"/>
 </p>
 
-# Node-RED Boilerplate
+# Connect Port
 
-A production ready application boilerplate with Node-RED embedded.
+Conectando e centralizando as informações do Porto de Santos.
 
-## Quick start
+# Tecnologia utilizadas
 
-1. Clone the code
+- Telegram como canal de comunicação
+- Node.js/Node-RED
+- IBM Watson Assistant
 
-        git clone https://github.com/diglopes/node-red-boilerplate.git
-        cd node-red-boilerplate
+## Como rodar o projeto
 
-2. Install the node-red dependencies
+Clique na imagem abaixo para ver o vídeo tutorial.
 
-        npm install
-
-3. Run in development mode
-
-        npm run dev
-
-4. Open <http://localhost:1880/admin>
+[![IMAGE ALT TEXT](https://img.youtube.com/vi/9Klp66yejRA/0.jpg)](https://www.youtube.com/watch?v=9Klp66yejRA "Tutorial Connect Port")
