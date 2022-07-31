@@ -250,10 +250,12 @@
         "y": 500,
         "wires": [
             [
-                "e2d8a8b462ab2a1b"
+                "e2d8a8b462ab2a1b",
+                "770a0dfdac68c429"
             ],
             [
-                "e2d8a8b462ab2a1b"
+                "e2d8a8b462ab2a1b",
+                "770a0dfdac68c429"
             ]
         ]
     },
@@ -357,23 +359,6 @@
             [
                 "f690b090017e717d"
             ]
-        ]
-    },
-    {
-        "id": "700714ac4dbb276c",
-        "type": "function",
-        "z": "dc57c22878a26a01",
-        "name": "",
-        "func": "msg.payload = {\n    chatId: 1354493990,\n    content: \"iopaaa nasci\",\n    type: \"message\"\n}\n\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 140,
-        "y": 300,
-        "wires": [
-            []
         ]
     },
     {
@@ -517,5 +502,21 @@
                 "d86374c0a990128d"
             ]
         ]
+    },
+    {
+        "id": "770a0dfdac68c429",
+        "type": "debug",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 440,
+        "wires": []
     }
 ]
