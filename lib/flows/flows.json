@@ -70,7 +70,8 @@
         "y": 500,
         "wires": [
             [
-                "562d4fb3e5c46fd1"
+                "562d4fb3e5c46fd1",
+                "6a2a4fa2846a5f11"
             ]
         ]
     },
@@ -156,8 +157,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 730,
-        "y": 500,
+        "x": 710,
+        "y": 580,
         "wires": []
     },
     {
@@ -184,6 +185,132 @@
         "wires": [
             [
                 "549fe63188cc5182"
+            ]
+        ]
+    },
+    {
+        "id": "6a2a4fa2846a5f11",
+        "type": "watson-assistant-v2",
+        "z": "dc57c22878a26a01",
+        "name": "Porto Hack",
+        "service-endpoint": "",
+        "assistant_id": "a5685794-6200-4e70-869d-0554cebf6d0f",
+        "debug": false,
+        "restart": false,
+        "return_context": true,
+        "alternate_intents": false,
+        "multisession": true,
+        "timeout": "",
+        "optout-learning": false,
+        "persist-session-id": false,
+        "x": 750,
+        "y": 500,
+        "wires": [
+            [
+                "9cd9c6a4909e1eb7"
+            ]
+        ]
+    },
+    {
+        "id": "9cd9c6a4909e1eb7",
+        "type": "debug",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 910,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "4c3a98cda6cb1db7",
+        "type": "watson-text-to-speech",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "lang": "pt-BR",
+        "langhidden": "pt-BR",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "voice": "pt-BR_IsabelaV3Voice",
+        "voicehidden": "pt-BR_IsabelaV3Voice",
+        "format": "audio/mp3",
+        "password": "",
+        "apikey": "CiulbbkTZw02lqazacObHK8-36hxeNNQ68ys14j_cM9e",
+        "payload-response": false,
+        "service-endpoint": "https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/f0a3ac0b-b167-4b51-9ec1-c95364422fa3",
+        "x": 780,
+        "y": 260,
+        "wires": [
+            [
+                "1ca90db50ebc187c"
+            ]
+        ]
+    },
+    {
+        "id": "66f58d29eafe0bb8",
+        "type": "inject",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Caramba rapaz, legal",
+        "payloadType": "str",
+        "x": 680,
+        "y": 400,
+        "wires": [
+            [
+                "4c3a98cda6cb1db7"
+            ]
+        ]
+    },
+    {
+        "id": "d7b4d541df8e4a51",
+        "type": "play audio",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "voice": "",
+        "x": 1030,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "1ca90db50ebc187c",
+        "type": "change",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "speech",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 320,
+        "wires": [
+            [
+                "d7b4d541df8e4a51"
             ]
         ]
     }
