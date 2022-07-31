@@ -448,8 +448,8 @@
         "links": [
             "c537faa811e5d940"
         ],
-        "x": 1305,
-        "y": 500,
+        "x": 1355,
+        "y": 480,
         "wires": []
     },
     {
@@ -624,8 +624,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1360,
-        "y": 460,
+        "x": 1380,
+        "y": 520,
         "wires": [
             [
                 "4c3a98cda6cb1db7",
@@ -652,8 +652,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1360,
-        "y": 540,
+        "x": 1380,
+        "y": 580,
         "wires": [
             [
                 "4c3a98cda6cb1db7",
@@ -728,10 +728,38 @@
         "to": "",
         "reg": false,
         "x": 1160,
-        "y": 440,
+        "y": 420,
         "wires": [
             [
-                "d86374c0a990128d"
+                "d86374c0a990128d",
+                "fda7c112a76da74b"
+            ]
+        ]
+    },
+    {
+        "id": "fda7c112a76da74b",
+        "type": "change",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "\"Navio aguardando por conta do perigo iminente.\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1420,
+        "y": 300,
+        "wires": [
+            [
+                "4c3a98cda6cb1db7"
             ]
         ]
     },
