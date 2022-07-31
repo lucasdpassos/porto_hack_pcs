@@ -434,7 +434,7 @@
         "type": "function",
         "z": "dc57c22878a26a01",
         "name": "",
-        "func": "if(msg.payload.output.intents[0].intent == \"Prontidao\") {\n    msg.payload =  \"Maravilha, navio Polônia, o terminal já foi avisado da sua chegada. A Maré está alta, a temperatura no canal está em 17 graus e a humidade relativa do ar está em 3 porcento, cuidado, visibilidade horizontal em aproximadamente 3 quilômetros.\"\n}\n\nreturn msg;",
+        "func": "if(msg.payload.output.intents[0].intent == \"Prontidao\") {\n    msg.payload = `Maravilha, navio ${msg.payload.output.entities[0].value}, o terminal já foi avisado da sua chegada. A Maré está alta, a temperatura no canal está em 17 graus e a humidade relativa do ar está em 3 porcento, cuidado, visibilidade horizontal em aproximadamente 3 quilômetros.`\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
