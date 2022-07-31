@@ -303,6 +303,13 @@
                 "pt": "msg",
                 "to": "payload.weblink",
                 "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "params.session_id",
+                "pt": "msg",
+                "to": "originalMessage.chat.id",
+                "tot": "msg"
             }
         ],
         "action": "",
@@ -337,10 +344,7 @@
         "y": 500,
         "wires": [
             [
-                "2630e99e9baaa10a",
                 "a10add62324fb078",
-                "34ff2991d2f31bfd",
-                "7e8fac36b4738d04",
                 "6d087fc280f26b78"
             ]
         ]
@@ -365,8 +369,7 @@
         "y": 360,
         "wires": [
             [
-                "a99669f6e787819a",
-                "a2834b271d0feab5"
+                "a99669f6e787819a"
             ]
         ]
     },
@@ -378,29 +381,11 @@
         "bot": "80923c8f0435f7a4",
         "haserroroutput": false,
         "outputs": 1,
-        "x": 2120,
-        "y": 340,
+        "x": 2100,
+        "y": 360,
         "wires": [
-            [
-                "f690b090017e717d"
-            ]
+            []
         ]
-    },
-    {
-        "id": "f690b090017e717d",
-        "type": "debug",
-        "z": "dc57c22878a26a01",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2290,
-        "y": 340,
-        "wires": []
     },
     {
         "id": "a99669f6e787819a",
@@ -417,28 +402,9 @@
         "y": 360,
         "wires": [
             [
-                "10f9dee14dc109c0",
-                "bdd49efab65c1f12",
-                "a2834b271d0feab5"
+                "10f9dee14dc109c0"
             ]
         ]
-    },
-    {
-        "id": "bdd49efab65c1f12",
-        "type": "debug",
-        "z": "dc57c22878a26a01",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload.type",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2130,
-        "y": 380,
-        "wires": []
     },
     {
         "id": "d86374c0a990128d",
@@ -496,69 +462,33 @@
         ]
     },
     {
-        "id": "2630e99e9baaa10a",
-        "type": "switch",
-        "z": "dc57c22878a26a01",
-        "name": "intent",
-        "property": "msg.payload.output.intents[intent='Swell'][]",
-        "propertyType": "jsonata",
-        "rules": [
-            {
-                "t": "nempty"
-            }
-        ],
-        "checkall": "false",
-        "repair": true,
-        "outputs": 1,
-        "x": 1140,
-        "y": 440,
-        "wires": [
-            [
-                "b103335752b1e34b"
-            ]
-        ]
-    },
-    {
         "id": "34ff2991d2f31bfd",
         "type": "switch",
         "z": "dc57c22878a26a01",
         "name": "intent",
-        "property": "msg.payload.output.entities[value='Aviso'][]",
+        "property": "payload.output.entities[entity=\"ModoProntidao\"].value",
         "propertyType": "jsonata",
         "rules": [
             {
-                "t": "nempty"
+                "t": "eq",
+                "v": "Aviso",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Aceito",
+                "vt": "str"
             }
         ],
         "checkall": "false",
         "repair": true,
-        "outputs": 1,
-        "x": 1140,
-        "y": 480,
+        "outputs": 2,
+        "x": 1130,
+        "y": 500,
         "wires": [
             [
                 "9088051f37191c3a"
-            ]
-        ]
-    },
-    {
-        "id": "c13e18956ed6ace1",
-        "type": "switch",
-        "z": "dc57c22878a26a01",
-        "name": "intent",
-        "property": "msg.payload.output.entities[value='Aceito'][]",
-        "propertyType": "jsonata",
-        "rules": [
-            {
-                "t": "nempty"
-            }
-        ],
-        "checkall": "false",
-        "repair": true,
-        "outputs": 1,
-        "x": 1140,
-        "y": 520,
-        "wires": [
+            ],
             [
                 "80e8a4613c414c4d"
             ]
@@ -629,8 +559,7 @@
         "y": 340,
         "wires": [
             [
-                "4c3a98cda6cb1db7",
-                "a2834b271d0feab5"
+                "4c3a98cda6cb1db7"
             ]
         ]
     },
@@ -657,27 +586,9 @@
         "y": 380,
         "wires": [
             [
-                "4c3a98cda6cb1db7",
-                "a2834b271d0feab5"
+                "4c3a98cda6cb1db7"
             ]
         ]
-    },
-    {
-        "id": "a2834b271d0feab5",
-        "type": "debug",
-        "z": "dc57c22878a26a01",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2040,
-        "y": 440,
-        "wires": []
     },
     {
         "id": "a10add62324fb078",
@@ -765,29 +676,6 @@
         ]
     },
     {
-        "id": "5ef1468311611f18",
-        "type": "switch",
-        "z": "dc57c22878a26a01",
-        "name": "intent",
-        "property": "msg.payload.output.intents[intent='PSP'][]",
-        "propertyType": "jsonata",
-        "rules": [
-            {
-                "t": "nempty"
-            }
-        ],
-        "checkall": "false",
-        "repair": true,
-        "outputs": 1,
-        "x": 1140,
-        "y": 560,
-        "wires": [
-            [
-                "155470a65de41366"
-            ]
-        ]
-    },
-    {
         "id": "155470a65de41366",
         "type": "change",
         "z": "dc57c22878a26a01",
@@ -857,29 +745,6 @@
         ]
     },
     {
-        "id": "7e8fac36b4738d04",
-        "type": "switch",
-        "z": "dc57c22878a26a01",
-        "name": "intent",
-        "property": "msg.payload.output.intents[intent='PraticoABordo'][]",
-        "propertyType": "jsonata",
-        "rules": [
-            {
-                "t": "nempty"
-            }
-        ],
-        "checkall": "false",
-        "repair": true,
-        "outputs": 1,
-        "x": 1140,
-        "y": 600,
-        "wires": [
-            [
-                "6c7435fdf3dea6ee"
-            ]
-        ]
-    },
-    {
         "id": "6c7435fdf3dea6ee",
         "type": "change",
         "z": "dc57c22878a26a01",
@@ -926,22 +791,47 @@
         "type": "switch",
         "z": "dc57c22878a26a01",
         "name": "intent",
-        "property": "msg.payload.output.intents[intent='Prontidao'][]",
+        "property": "msg.payload.output.intents[0].intent",
         "propertyType": "jsonata",
         "rules": [
             {
-                "t": "nempty"
+                "t": "eq",
+                "v": "Swell",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Prontidao",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "PSP",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "PraticoABordo",
+                "vt": "str"
             }
         ],
         "checkall": "false",
         "repair": true,
-        "outputs": 1,
-        "x": 1010,
-        "y": 540,
+        "outputs": 4,
+        "x": 990,
+        "y": 500,
         "wires": [
             [
-                "c13e18956ed6ace1",
-                "5ef1468311611f18"
+                "b103335752b1e34b"
+            ],
+            [
+                "34ff2991d2f31bfd"
+            ],
+            [
+                "155470a65de41366"
+            ],
+            [
+                "6c7435fdf3dea6ee"
             ]
         ]
     },
