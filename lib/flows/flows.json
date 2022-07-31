@@ -255,19 +255,20 @@
         "keywords-threshold": "0.5",
         "word-confidence": false,
         "password": "",
-        "apikey": "e_V905ieOoC1xTNXqa7VTbSe1fvpCtBwXoLHUnsALJbV",
+        "apikey": "qe8yPjy0rx-h919ejHMqvdE_YEqMjt6A9Dj0U0kmLY7O",
         "payload-response": true,
         "streaming-mode": false,
         "streaming-mute": true,
         "auto-connect": false,
         "discard-listening": false,
         "disable-precheck": false,
-        "service-endpoint": "https://api.us-south.speech-to-text.watson.cloud.ibm.com/instances/e2160b5a-3505-4f30-b44c-7cb13e96be38",
-        "x": 560,
+        "service-endpoint": "https://api.us-south.speech-to-text.watson.cloud.ibm.com/instances/9bdcf41a-dddd-4dba-bd09-802c2fea6ba2",
+        "x": 500,
         "y": 500,
         "wires": [
             [
-                "6a2a4fa2846a5f11"
+                "6a2a4fa2846a5f11",
+                "a10add62324fb078"
             ]
         ]
     },
@@ -276,7 +277,7 @@
         "type": "telegram receiver",
         "z": "dc57c22878a26a01",
         "name": "",
-        "bot": "80923c8f0435f7a4",
+        "bot": "a57477b71ec13242",
         "saveDataDir": "",
         "filterCommands": false,
         "x": 130,
@@ -309,7 +310,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 340,
+        "x": 320,
         "y": 500,
         "wires": [
             [
@@ -332,13 +333,12 @@
         "timeout": "",
         "optout-learning": false,
         "persist-session-id": false,
-        "x": 750,
+        "x": 690,
         "y": 500,
         "wires": [
             [
-                "a8a4ec391483f3bc",
-                "0c207c8296aed0c6",
-                "9088051f37191c3a"
+                "2630e99e9baaa10a",
+                "a10add62324fb078"
             ]
         ]
     },
@@ -358,11 +358,12 @@
         "apikey": "ddbUdn93eJtg1eJmcfhz9yBRMBnsXSq51YGz875z_p-j",
         "payload-response": false,
         "service-endpoint": "https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/b3c0b40c-145b-4ddb-aa68-12afa01c8c0f",
-        "x": 1120,
+        "x": 1560,
         "y": 500,
         "wires": [
             [
-                "a99669f6e787819a"
+                "a99669f6e787819a",
+                "a2834b271d0feab5"
             ]
         ]
     },
@@ -371,11 +372,11 @@
         "type": "telegram sender",
         "z": "dc57c22878a26a01",
         "name": "",
-        "bot": "80923c8f0435f7a4",
+        "bot": "a57477b71ec13242",
         "haserroroutput": false,
         "outputs": 1,
-        "x": 1490,
-        "y": 420,
+        "x": 1900,
+        "y": 480,
         "wires": [
             [
                 "f690b090017e717d"
@@ -394,8 +395,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1670,
-        "y": 340,
+        "x": 2070,
+        "y": 480,
         "wires": []
     },
     {
@@ -403,18 +404,19 @@
         "type": "function",
         "z": "dc57c22878a26a01",
         "name": "",
-        "func": "msg.payload = {\n    content: msg.speech,\n    type: \"voice\",\n    chatId: 1354493990\n}\n\nreturn msg;",
+        "func": "msg.payload = {\n    content: msg.speech,\n    type: \"voice\",\n    chatId: msg.originalMessage.chat.id\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1380,
-        "y": 520,
+        "x": 1720,
+        "y": 500,
         "wires": [
             [
                 "10f9dee14dc109c0",
-                "bdd49efab65c1f12"
+                "bdd49efab65c1f12",
+                "a2834b271d0feab5"
             ]
         ]
     },
@@ -431,28 +433,9 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1550,
-        "y": 580,
+        "x": 1910,
+        "y": 520,
         "wires": []
-    },
-    {
-        "id": "a8a4ec391483f3bc",
-        "type": "function",
-        "z": "dc57c22878a26a01",
-        "name": "",
-        "func": "if (msg.payload.output.intents[0].intent == \"Prontidao\" && msg.payload.output.entities[1].value == \"Aviso\") {\n    msg.payload = `Maravilha, navio ${msg.payload.output.entities[0].value}, o terminal já foi avisado da sua chegada. A Maré está alta, a temperatura no canal está em 17 graus e a humidade relativa do ar está em 3 porcento, cuidado, visibilidade horizontal em aproximadamente 3 quilômetros.`\n    return msg\n}\n\nif (msg.payload.output.intents[0].intent == \"Swell\") {\n    msg.payload = `Atenção: A energia da ondulação dentro do canal está muito maior do que a média, solicitamos que aguarde até a liberação de segurança.`\n    return msg\n}\n\nif (msg.payload.output.intents[0].intent == \"Prontidao\" && msg.payload.output.entities[1].value == \"Aceito\") {\n    msg.payload = `Aceite efetuado com sucesso`\n    return msg\n}\n\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 940,
-        "y": 380,
-        "wires": [
-            [
-                "4c3a98cda6cb1db7"
-            ]
-        ]
     },
     {
         "id": "d86374c0a990128d",
@@ -463,25 +446,8 @@
         "links": [
             "c537faa811e5d940"
         ],
-        "x": 1125,
-        "y": 600,
-        "wires": []
-    },
-    {
-        "id": "0c207c8296aed0c6",
-        "type": "debug",
-        "z": "dc57c22878a26a01",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 950,
-        "y": 660,
+        "x": 1305,
+        "y": 500,
         "wires": []
     },
     {
@@ -501,8 +467,8 @@
                 "t": "set",
                 "p": "payload.eventType",
                 "pt": "msg",
-                "to": "event.output.intents.0.intent",
-                "tot": "msg"
+                "to": "prontidao_aviso",
+                "tot": "str"
             },
             {
                 "t": "set",
@@ -517,8 +483,250 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 980,
+        "x": 1160,
+        "y": 480,
+        "wires": [
+            [
+                "d86374c0a990128d",
+                "608c1e461cc9c38c"
+            ]
+        ]
+    },
+    {
+        "id": "2630e99e9baaa10a",
+        "type": "switch",
+        "z": "dc57c22878a26a01",
+        "name": "intent",
+        "property": "msg.payload.output.intents[intent='Swell'][]",
+        "propertyType": "jsonata",
+        "rules": [
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "false",
+        "repair": true,
+        "outputs": 1,
+        "x": 850,
+        "y": 500,
+        "wires": [
+            [
+                "34ff2991d2f31bfd",
+                "c13e18956ed6ace1",
+                "b103335752b1e34b"
+            ]
+        ]
+    },
+    {
+        "id": "34ff2991d2f31bfd",
+        "type": "switch",
+        "z": "dc57c22878a26a01",
+        "name": "intent",
+        "property": "msg.payload.output.entities[value='Aviso'][]",
+        "propertyType": "jsonata",
+        "rules": [
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "false",
+        "repair": true,
+        "outputs": 1,
+        "x": 1010,
+        "y": 480,
+        "wires": [
+            [
+                "9088051f37191c3a"
+            ]
+        ]
+    },
+    {
+        "id": "c13e18956ed6ace1",
+        "type": "switch",
+        "z": "dc57c22878a26a01",
+        "name": "intent",
+        "property": "msg.payload.output.entities[value='Aceito'][]",
+        "propertyType": "jsonata",
+        "rules": [
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "false",
+        "repair": true,
+        "outputs": 1,
+        "x": 1010,
+        "y": 520,
+        "wires": [
+            [
+                "80e8a4613c414c4d"
+            ]
+        ]
+    },
+    {
+        "id": "80e8a4613c414c4d",
+        "type": "change",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "event",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.eventType",
+                "pt": "msg",
+                "to": "prontidao_aceito",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.data.ship",
+                "pt": "msg",
+                "to": "event.output.entities.0.value",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1160,
+        "y": 520,
+        "wires": [
+            [
+                "d86374c0a990128d",
+                "db26be0662094a07"
+            ]
+        ]
+    },
+    {
+        "id": "608c1e461cc9c38c",
+        "type": "change",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "\"Maravilha, navio\" & $.payload.output.entities[0].value & \", o terminal já foi avisado da sua chegada. A Maré está alta, a temperatura no canal está em 17 graus e a humidade relativa do ar está em 3 porcento, cuidado, visibilidade horizontal em aproximadamente 3 quilômetros.\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1360,
+        "y": 460,
+        "wires": [
+            [
+                "4c3a98cda6cb1db7"
+            ]
+        ]
+    },
+    {
+        "id": "db26be0662094a07",
+        "type": "change",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Aceite efetuado com sucesso",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1360,
+        "y": 540,
+        "wires": [
+            [
+                "4c3a98cda6cb1db7"
+            ]
+        ]
+    },
+    {
+        "id": "a2834b271d0feab5",
+        "type": "debug",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1820,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "a10add62324fb078",
+        "type": "debug",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
         "y": 600,
+        "wires": []
+    },
+    {
+        "id": "b103335752b1e34b",
+        "type": "change",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "event",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.eventType",
+                "pt": "msg",
+                "to": "swell",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.data.ship",
+                "pt": "msg",
+                "to": "event.output.entities.0.value",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1160,
+        "y": 440,
         "wires": [
             [
                 "d86374c0a990128d"
