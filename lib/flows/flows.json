@@ -813,11 +813,16 @@
                 "t": "eq",
                 "v": "PraticoABordo",
                 "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Alerta",
+                "vt": "str"
             }
         ],
         "checkall": "false",
         "repair": true,
-        "outputs": 4,
+        "outputs": 5,
         "x": 990,
         "y": 500,
         "wires": [
@@ -832,7 +837,77 @@
             ],
             [
                 "6c7435fdf3dea6ee"
+            ],
+            [
+                "9f26b84323a33c2d"
             ]
+        ]
+    },
+    {
+        "id": "9f26b84323a33c2d",
+        "type": "change",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "event",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.eventType",
+                "pt": "msg",
+                "to": "alerta",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.data",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1280,
+        "y": 640,
+        "wires": [
+            [
+                "d86374c0a990128d",
+                "c210023a543f1774"
+            ]
+        ]
+    },
+    {
+        "id": "c210023a543f1774",
+        "type": "change",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Simulação de nível crítico de maré efetuada. Obrigado à todos os participantes do Porto ráque 2022",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1546,
+        "y": 459,
+        "wires": [
+            []
         ]
     },
     {
