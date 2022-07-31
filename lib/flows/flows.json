@@ -76,57 +76,6 @@
         ]
     },
     {
-        "id": "10f9dee14dc109c0",
-        "type": "telegram sender",
-        "z": "dc57c22878a26a01",
-        "name": "",
-        "bot": "80923c8f0435f7a4",
-        "haserroroutput": false,
-        "outputs": 1,
-        "x": 330,
-        "y": 300,
-        "wires": [
-            [
-                "c13c6980092b506a"
-            ]
-        ]
-    },
-    {
-        "id": "700714ac4dbb276c",
-        "type": "function",
-        "z": "dc57c22878a26a01",
-        "name": "",
-        "func": "msg.payload = {\n    chatId: 1354493990,\n    content: \"iopaaa nasci\",\n    type: \"message\"\n}\n\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 140,
-        "y": 300,
-        "wires": [
-            [
-                "10f9dee14dc109c0"
-            ]
-        ]
-    },
-    {
-        "id": "c13c6980092b506a",
-        "type": "debug",
-        "z": "dc57c22878a26a01",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 530,
-        "y": 300,
-        "wires": []
-    },
-    {
         "id": "890b59e653fe454d",
         "type": "telegram receiver",
         "z": "dc57c22878a26a01",
@@ -207,26 +156,9 @@
         "y": 500,
         "wires": [
             [
-                "9cd9c6a4909e1eb7"
+                "a8a4ec391483f3bc"
             ]
         ]
-    },
-    {
-        "id": "9cd9c6a4909e1eb7",
-        "type": "debug",
-        "z": "dc57c22878a26a01",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 910,
-        "y": 500,
-        "wires": []
     },
     {
         "id": "4c3a98cda6cb1db7",
@@ -244,36 +176,11 @@
         "apikey": "CiulbbkTZw02lqazacObHK8-36hxeNNQ68ys14j_cM9e",
         "payload-response": false,
         "service-endpoint": "https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/f0a3ac0b-b167-4b51-9ec1-c95364422fa3",
-        "x": 780,
-        "y": 260,
+        "x": 1120,
+        "y": 500,
         "wires": [
             [
                 "1ca90db50ebc187c"
-            ]
-        ]
-    },
-    {
-        "id": "66f58d29eafe0bb8",
-        "type": "inject",
-        "z": "dc57c22878a26a01",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "Caramba rapaz, legal",
-        "payloadType": "str",
-        "x": 680,
-        "y": 400,
-        "wires": [
-            [
-                "4c3a98cda6cb1db7"
             ]
         ]
     },
@@ -283,8 +190,8 @@
         "z": "dc57c22878a26a01",
         "name": "",
         "voice": "",
-        "x": 1030,
-        "y": 380,
+        "x": 1650,
+        "y": 540,
         "wires": []
     },
     {
@@ -295,7 +202,7 @@
         "rules": [
             {
                 "t": "set",
-                "p": "payload",
+                "p": "payload.content",
                 "pt": "msg",
                 "to": "speech",
                 "tot": "msg"
@@ -306,12 +213,97 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 920,
-        "y": 320,
+        "x": 1330,
+        "y": 580,
         "wires": [
             [
-                "d7b4d541df8e4a51"
+                "10f9dee14dc109c0"
             ]
+        ]
+    },
+    {
+        "id": "a8a4ec391483f3bc",
+        "type": "function",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "func": "if(msg.payload.output.intents[0].intent == \"Prontidao\") {\n    msg.payload = \"Maravilha, navio Polônia, o terminal já foi avisado da sua chegada. A Maré está alta, a temperatura no canal está em 17 graus e a humidade relativa do ar está em 3 porcento, cuidado, visibilidade horizontal em aproximadamente 3 quilômetros.\"\n    msg.payload.type = \"voice\",\n    msg.payload.chatId = 1354493990\n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 500,
+        "wires": [
+            [
+                "4c3a98cda6cb1db7"
+            ]
+        ]
+    },
+    {
+        "id": "10f9dee14dc109c0",
+        "type": "telegram sender",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "bot": "80923c8f0435f7a4",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 1450,
+        "y": 460,
+        "wires": [
+            [
+                "f690b090017e717d"
+            ]
+        ]
+    },
+    {
+        "id": "700714ac4dbb276c",
+        "type": "function",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "func": "msg.payload = {\n    chatId: 1354493990,\n    content: \"iopaaa nasci\",\n    type: \"message\"\n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 140,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f690b090017e717d",
+        "type": "debug",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1670,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "a99669f6e787819a",
+        "type": "function",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1300,
+        "y": 640,
+        "wires": [
+            []
         ]
     }
 ]
