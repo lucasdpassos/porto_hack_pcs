@@ -364,7 +364,7 @@
         "password": "",
         "apikey": "ELW6lOSE0yuKsxsC-QuKYgqzbleKyN1LQw6zXr2Wnk1y",
         "payload-response": false,
-        "service-endpoint": "https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/ca629ba0-fb75-44a0-8137-dcdae47a5041",
+        "service-endpoint": "https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/604c9e20-6a19-4cc3-a440-50a0e67ea193",
         "x": 1780,
         "y": 360,
         "wires": [
