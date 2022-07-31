@@ -818,11 +818,14 @@
                 "t": "eq",
                 "v": "Alerta",
                 "vt": "str"
+            },
+            {
+                "t": "else"
             }
         ],
         "checkall": "false",
         "repair": true,
-        "outputs": 5,
+        "outputs": 6,
         "x": 990,
         "y": 500,
         "wires": [
@@ -840,6 +843,9 @@
             ],
             [
                 "9f26b84323a33c2d"
+            ],
+            [
+                "242331cd4b845e35"
             ]
         ]
     },
@@ -906,6 +912,33 @@
         "reg": false,
         "x": 1546,
         "y": 459,
+        "wires": [
+            [
+                "4c3a98cda6cb1db7"
+            ]
+        ]
+    },
+    {
+        "id": "242331cd4b845e35",
+        "type": "change",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Não entendi, poderia repetir, por favor?",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1160,
+        "y": 740,
         "wires": [
             [
                 "4c3a98cda6cb1db7"
