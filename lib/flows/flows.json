@@ -70,7 +70,6 @@
         "y": 500,
         "wires": [
             [
-                "562d4fb3e5c46fd1",
                 "6a2a4fa2846a5f11"
             ]
         ]
@@ -93,22 +92,6 @@
                 "e2d8a8b462ab2a1b"
             ]
         ]
-    },
-    {
-        "id": "562d4fb3e5c46fd1",
-        "type": "debug",
-        "z": "dc57c22878a26a01",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 710,
-        "y": 580,
-        "wires": []
     },
     {
         "id": "e2d8a8b462ab2a1b",
@@ -180,7 +163,7 @@
         "y": 500,
         "wires": [
             [
-                "1ca90db50ebc187c"
+                "a99669f6e787819a"
             ]
         ]
     },
@@ -195,52 +178,6 @@
         "wires": []
     },
     {
-        "id": "1ca90db50ebc187c",
-        "type": "change",
-        "z": "dc57c22878a26a01",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload.content",
-                "pt": "msg",
-                "to": "speech",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1330,
-        "y": 580,
-        "wires": [
-            [
-                "10f9dee14dc109c0"
-            ]
-        ]
-    },
-    {
-        "id": "a8a4ec391483f3bc",
-        "type": "function",
-        "z": "dc57c22878a26a01",
-        "name": "",
-        "func": "if(msg.payload.output.intents[0].intent == \"Prontidao\") {\n    msg.payload = \"Maravilha, navio Polônia, o terminal já foi avisado da sua chegada. A Maré está alta, a temperatura no canal está em 17 graus e a humidade relativa do ar está em 3 porcento, cuidado, visibilidade horizontal em aproximadamente 3 quilômetros.\"\n    msg.payload.type = \"voice\",\n    msg.payload.chatId = 1354493990\n}\n\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 920,
-        "y": 500,
-        "wires": [
-            [
-                "4c3a98cda6cb1db7"
-            ]
-        ]
-    },
-    {
         "id": "10f9dee14dc109c0",
         "type": "telegram sender",
         "z": "dc57c22878a26a01",
@@ -248,8 +185,8 @@
         "bot": "80923c8f0435f7a4",
         "haserroroutput": false,
         "outputs": 1,
-        "x": 1450,
-        "y": 460,
+        "x": 1490,
+        "y": 420,
         "wires": [
             [
                 "f690b090017e717d"
@@ -294,16 +231,55 @@
         "type": "function",
         "z": "dc57c22878a26a01",
         "name": "",
-        "func": "\nreturn msg;",
+        "func": "msg.payload = {\n    content: msg.speech,\n    type: \"voice\",\n    chatId: 1354493990\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1300,
-        "y": 640,
+        "x": 1380,
+        "y": 520,
         "wires": [
-            []
+            [
+                "10f9dee14dc109c0",
+                "bdd49efab65c1f12"
+            ]
+        ]
+    },
+    {
+        "id": "bdd49efab65c1f12",
+        "type": "debug",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload.type",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1550,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "a8a4ec391483f3bc",
+        "type": "function",
+        "z": "dc57c22878a26a01",
+        "name": "",
+        "func": "if(msg.payload.output.intents[0].intent == \"Prontidao\") {\n    msg.payload =  \"Maravilha, navio Polônia, o terminal já foi avisado da sua chegada. A Maré está alta, a temperatura no canal está em 17 graus e a humidade relativa do ar está em 3 porcento, cuidado, visibilidade horizontal em aproximadamente 3 quilômetros.\"\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 500,
+        "wires": [
+            [
+                "4c3a98cda6cb1db7"
+            ]
         ]
     }
 ]
