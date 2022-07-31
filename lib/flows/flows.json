@@ -362,9 +362,9 @@
         "voicehidden": "pt-BR_IsabelaV3Voice",
         "format": "audio/mp3",
         "password": "",
-        "apikey": "d1rashyk1Gg7pl3RcA7i04I92vkgJUE4ai4fuWfXYqB3",
+        "apikey": "gYwkNScBmChApmczfmR241zXNvxejm7l6d2-1I0EIb37",
         "payload-response": false,
-        "service-endpoint": "https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/ca629ba0-fb75-44a0-8137-dcdae47a5041",
+        "service-endpoint": "https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/44faba5f-846b-44b5-a2bb-aa7157684781",
         "x": 1780,
         "y": 360,
         "wires": [
