@@ -16,6 +16,14 @@
         "env": []
     },
     {
+        "id": "ed011d71754949c7",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "80923c8f0435f7a4",
         "type": "telegram bot",
         "botname": "PCS_Hackha",
@@ -44,6 +52,30 @@
         "type": "websocket-listener",
         "path": "/ws/dashboard-updates",
         "wholemsg": "false"
+    },
+    {
+        "id": "a57477b71ec13242",
+        "type": "telegram bot",
+        "botname": "DEV_BOT",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
     },
     {
         "id": "2295068dbcb17ca7",
@@ -134,7 +166,8 @@
         "name": "",
         "links": [
             "99ed44b27e01b79f",
-            "d86374c0a990128d"
+            "d86374c0a990128d",
+            "2784cf68cb6ca7ea"
         ],
         "x": 425,
         "y": 260,
@@ -230,7 +263,7 @@
         "discard-listening": false,
         "disable-precheck": false,
         "service-endpoint": "https://api.us-south.speech-to-text.watson.cloud.ibm.com/instances/e2160b5a-3505-4f30-b44c-7cb13e96be38",
-        "x": 540,
+        "x": 560,
         "y": 500,
         "wires": [
             [
@@ -250,12 +283,10 @@
         "y": 500,
         "wires": [
             [
-                "e2d8a8b462ab2a1b",
-                "770a0dfdac68c429"
+                "e2d8a8b462ab2a1b"
             ],
             [
-                "e2d8a8b462ab2a1b",
-                "770a0dfdac68c429"
+                "e2d8a8b462ab2a1b"
             ]
         ]
     },
@@ -324,9 +355,9 @@
         "voicehidden": "pt-BR_IsabelaV3Voice",
         "format": "audio/mp3",
         "password": "",
-        "apikey": "CiulbbkTZw02lqazacObHK8-36hxeNNQ68ys14j_cM9e",
+        "apikey": "ddbUdn93eJtg1eJmcfhz9yBRMBnsXSq51YGz875z_p-j",
         "payload-response": false,
-        "service-endpoint": "https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/f0a3ac0b-b167-4b51-9ec1-c95364422fa3",
+        "service-endpoint": "https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/b3c0b40c-145b-4ddb-aa68-12afa01c8c0f",
         "x": 1120,
         "y": 500,
         "wires": [
@@ -334,16 +365,6 @@
                 "a99669f6e787819a"
             ]
         ]
-    },
-    {
-        "id": "d7b4d541df8e4a51",
-        "type": "play audio",
-        "z": "dc57c22878a26a01",
-        "name": "",
-        "voice": "",
-        "x": 1650,
-        "y": 540,
-        "wires": []
     },
     {
         "id": "10f9dee14dc109c0",
@@ -419,7 +440,7 @@
         "type": "function",
         "z": "dc57c22878a26a01",
         "name": "",
-        "func": "if(msg.payload.output.intents[0].intent == \"Prontidao\") {\n    msg.payload = `Maravilha, navio ${msg.payload.output.entities[0].value}, o terminal já foi avisado da sua chegada. A Maré está alta, a temperatura no canal está em 17 graus e a humidade relativa do ar está em 3 porcento, cuidado, visibilidade horizontal em aproximadamente 3 quilômetros.`\n}\n\nreturn msg;",
+        "func": "if (msg.payload.output.intents[0].intent == \"Prontidao\" && msg.payload.output.entities[1].value == \"Aviso\") {\n    msg.payload = `Maravilha, navio ${msg.payload.output.entities[0].value}, o terminal já foi avisado da sua chegada. A Maré está alta, a temperatura no canal está em 17 graus e a humidade relativa do ar está em 3 porcento, cuidado, visibilidade horizontal em aproximadamente 3 quilômetros.`\n    return msg\n}\n\nif (msg.payload.output.intents[0].intent == \"Swell\") {\n    msg.payload = `Atenção: A energia da ondulação dentro do canal está muito maior do que a média, solicitamos que aguarde até a liberação de segurança.`\n    return msg\n}\n\nif (msg.payload.output.intents[0].intent == \"Prontidao\" && msg.payload.output.entities[1].value == \"Aceito\") {\n    msg.payload = `Aceite efetuado com sucesso`\n    return msg\n}\n\n\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -442,8 +463,8 @@
         "links": [
             "c537faa811e5d940"
         ],
-        "x": 935,
-        "y": 540,
+        "x": 1125,
+        "y": 600,
         "wires": []
     },
     {
@@ -455,10 +476,11 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 970,
+        "x": 950,
         "y": 660,
         "wires": []
     },
@@ -504,19 +526,189 @@
         ]
     },
     {
-        "id": "770a0dfdac68c429",
+        "id": "7147fbb80d3be8ca",
+        "type": "watson-speech-to-text-v1-query-builder",
+        "z": "ed011d71754949c7",
+        "name": "add words",
+        "apikey": "${WATSON_STT_API_KEY}",
+        "stt-custom-mode": "addWords",
+        "stt-custom-model-name": "Resolv Julia",
+        "stt-base-model": "pt-BR_BroadbandModel",
+        "base-model-hidden": "pt-BR_BroadbandModel",
+        "stt-custom-model-description": "",
+        "stt-custom-id": "2c557678-4616-4e50-86d7-c9c328e1409a",
+        "stt-corpus-name": "",
+        "stt-word-name": "",
+        "stt-allow-overwrite": false,
+        "service-endpoint": "${WATSON_STT_ENDPOINT}",
+        "x": 510,
+        "y": 220,
+        "wires": [
+            [
+                "0ab6c526b490bac9"
+            ]
+        ]
+    },
+    {
+        "id": "faea29d9bd4e4bb3",
+        "type": "inject",
+        "z": "ed011d71754949c7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[{\"word\":\"Resolv\",\"sounds_like\":[\"resolve\",\"resove\",\"resouve\"]},{\"word\":\"Tech\",\"sounds_like\":[\"etec\",\"tec\",\"téqui\",\"terra\",\"take\"]},{\"word\":\"Risk\",\"sounds_like\":[\"risk\",\"risqui\",\"risco\",\"riski\",\"risc\"]},{\"word\":\"Equatorial\",\"sounds_like\":[\"equatorial\",\"equadorial\",\"equador\",\"equatoria\"]},{\"word\":\"Lookia\",\"sounds_like\":[\"lóquia\",\"loca\",\"lókia\",\"loquia\",\"look ia\"]}]",
+        "payloadType": "json",
+        "x": 370,
+        "y": 220,
+        "wires": [
+            [
+                "7147fbb80d3be8ca"
+            ]
+        ]
+    },
+    {
+        "id": "0ab6c526b490bac9",
         "type": "debug",
-        "z": "dc57c22878a26a01",
+        "z": "ed011d71754949c7",
         "name": "",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 310,
-        "y": 440,
+        "x": 650,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "49775816e7bf8457",
+        "type": "watson-speech-to-text-v1-query-builder",
+        "z": "ed011d71754949c7",
+        "name": "train customization",
+        "apikey": "${WATSON_STT_API_KEY}",
+        "stt-custom-mode": "train",
+        "stt-custom-model-name": "Resolv Julia",
+        "stt-base-model": "pt-BR_BroadbandModel",
+        "base-model-hidden": "pt-BR_BroadbandModel",
+        "stt-custom-model-description": "",
+        "stt-custom-id": "2c557678-4616-4e50-86d7-c9c328e1409a",
+        "stt-corpus-name": "",
+        "stt-word-name": "",
+        "stt-allow-overwrite": false,
+        "service-endpoint": "${WATSON_STT_ENDPOINT}",
+        "x": 530,
+        "y": 180,
+        "wires": [
+            [
+                "e13b0505ac293c7e"
+            ]
+        ]
+    },
+    {
+        "id": "76e06ae78fcb8f34",
+        "type": "inject",
+        "z": "ed011d71754949c7",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 370,
+        "y": 180,
+        "wires": [
+            [
+                "49775816e7bf8457"
+            ]
+        ]
+    },
+    {
+        "id": "e13b0505ac293c7e",
+        "type": "debug",
+        "z": "ed011d71754949c7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "f591c70335efae85",
+        "type": "watson-speech-to-text-v1-query-builder",
+        "z": "ed011d71754949c7",
+        "name": "train customization",
+        "apikey": "e_V905ieOoC1xTNXqa7VTbSe1fvpCtBwXoLHUnsALJbV",
+        "stt-custom-mode": "createCustomisation",
+        "stt-custom-model-name": "Polonia",
+        "stt-base-model": "pt-BR_BroadbandModel",
+        "base-model-hidden": "pt-BR_BroadbandModel",
+        "stt-custom-model-description": "",
+        "stt-custom-id": "2c557678-4616-4e50-86d7-c9c328e1409a",
+        "stt-corpus-name": "",
+        "stt-word-name": "",
+        "stt-allow-overwrite": false,
+        "service-endpoint": "https://api.us-south.speech-to-text.watson.cloud.ibm.com/instances/e2160b5a-3505-4f30-b44c-7cb13e96be38",
+        "x": 510,
+        "y": 280,
+        "wires": [
+            [
+                "f537597defa91a91"
+            ]
+        ]
+    },
+    {
+        "id": "ab38750fc6c82d54",
+        "type": "inject",
+        "z": "ed011d71754949c7",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 350,
+        "y": 280,
+        "wires": [
+            [
+                "f591c70335efae85"
+            ]
+        ]
+    },
+    {
+        "id": "f537597defa91a91",
+        "type": "debug",
+        "z": "ed011d71754949c7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 280,
         "wires": []
     }
 ]
